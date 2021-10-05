@@ -28,6 +28,17 @@ class Main extends PluginBase implements Listener{
         }
     }
     
+    public function onWTS(PlayerChatEvent $e){
+        $p = $e->getPlayer();
+        if($e->getMessage() != "[WTS]"){
+            return;
+        }
+        $e->setCancelled();
+        foreach($this->getServer()->getOnlinePlayers() as $player){
+            $player->sendMessage("§e{$p->getName()} {$WTS} >> {$i}");
+        }    
+    }
+    
     public function onTalk(PlayerChatEvent $e){
         $p = $e->getPlayer();
         if($e->getMessage() != "[coor]"){
